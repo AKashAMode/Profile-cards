@@ -1,5 +1,5 @@
 
-import {useState } from "react";
+import { useState } from "react";
 
 const ProfileCard = ({ user, onSave, onReset }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -19,23 +19,13 @@ const ProfileCard = ({ user, onSave, onReset }) => {
     onReset();
   };
 
-
-  const convertToBase64 = async (url) => {
-    const response = await fetch(url);
-    const blob = await response.blob();
-    return new Promise((resolve) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(blob);
-      reader.onloadend = () => resolve(reader.result);
-    });
-  };
-
   return (
-    <div className="profile-card">
+    <div id="profile-card" className="profile-card">
       <img
         src={user.picture.large}
         alt={`${user.name.first} ${user.name.last}`}
         className="profile-image"
+        crossOrigin="anonymous"
       />
       {isEditing ? (
         <>
